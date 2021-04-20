@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Rendering;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
+#if UNITY_EDITOR
 public class DrawGizmos : MonoBehaviour
 {
     public enum Shape { Box = 0, Sphere = 1, Capsule = 2 }
@@ -66,7 +63,6 @@ public class DrawGizmos : MonoBehaviour
     bool onceRun;
 
     [SerializeField] string selectedIconName;
-
     private void OnValidate()
     {
         if (FreeSycn && !onceRun)
@@ -125,7 +121,6 @@ public class DrawGizmos : MonoBehaviour
     }
     void ShowText()
     {
-#if UNITY_EDITOR
         if (_drawText)
         {
             handleStyle.fontStyle = _labelFontSyle;
@@ -135,11 +130,9 @@ public class DrawGizmos : MonoBehaviour
 
             Handles.Label(labelPos, _label, handleStyle);
         }
-#endif
     }
     void ShowLine()
     {
-#if UNITY_EDITOR
         if (_drawLine)
         {
             Vector3 startPos = transform.position;
@@ -157,7 +150,6 @@ public class DrawGizmos : MonoBehaviour
                 _thickness
                 );
         }
-#endif
     }
     void DrawIcon()
     {
@@ -205,7 +197,6 @@ public class DrawGizmos : MonoBehaviour
     {
         _labelOffset = Vector3.zero;
     }
-#if UNITY_EDITOR
     void DrawCapsule(Vector3 _pos, Quaternion _rot, float _radius, float _height, Color _color = default(Color), bool _wireFrame = false)
     {
         if (_color != default(Color))
@@ -250,8 +241,8 @@ public class DrawGizmos : MonoBehaviour
             }
         }
     }
-#endif
 }
+#endif
 #if UNITY_EDITOR
 [CanEditMultipleObjects,CustomEditor(typeof(DrawGizmos))]
 public class DrawGizmosEditor : Editor

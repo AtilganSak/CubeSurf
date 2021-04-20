@@ -16,4 +16,28 @@ public class MenuCanvas : MonoBehaviour
 
         ReferenceKeeper.Instance.GameManager.StartGame();
     }
+    public void Pressed_30FPS_Button()
+    {
+        Application.targetFrameRate = 30;
+    }
+    public void Pressed_45FPS_Button()
+    {
+        Application.targetFrameRate = 45;
+    }
+    public void Pressed_60FPS_Button()
+    {
+        Application.targetFrameRate = 60;
+    }
+    public void Pressed_DontV()
+    {
+        QualitySettings.vSyncCount = 0;
+    }
+    public void Pressed_EveryV()
+    {
+        QualitySettings.vSyncCount = 1;
+    }
+    public void Pressed_EveryVSec()
+    {
+        QualitySettings.vSyncCount = 2;
+    }
 }
